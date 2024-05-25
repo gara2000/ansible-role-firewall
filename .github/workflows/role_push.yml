@@ -1,0 +1,21 @@
+name: CI of ansible-galaxy role
+
+on:
+  push:
+    branch: ["main"]
+  pull_request:
+    branch: ["main"]
+
+  workflow_dispatch:
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get repository name
+        run: echo "REPO_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
+
+      - name: Push role to ansible-galaxy
+        run: ansible-galaxy role import --token ${{secrets.GALAXY_TOKEN}} ${{github.REPOSITORY_OWNER}} ${{env.REPO_NAME}}

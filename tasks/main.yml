@@ -1,0 +1,7 @@
+---
+- name: Configure open ports with ufw
+  ufw:
+    rule: "{{ item.rule }}"
+    port: "{{ item.port }}"
+    proto: "{{ item.proto }}"
+  with_items: "{{ firewall_rules }}"
