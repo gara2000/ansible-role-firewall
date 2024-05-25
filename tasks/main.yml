@@ -10,5 +10,8 @@
   ufw:
     direction: "{{ item.direction }}"
     policy: "{{ item.policy }}"
-    state: enabled
   with_items: "{{ policies }}"
+
+- name: activate ufw firewall
+  ufw:
+    state: enabled
