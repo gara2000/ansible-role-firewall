@@ -5,3 +5,10 @@
     port: "{{ item.port }}"
     proto: "{{ item.proto }}"
   with_items: "{{ firewall_rules }}"
+
+- name: Configure default incoming/outgoing rules with ufw
+  ufw:
+    direction: "{{ item.direction }}"
+    policy: "{{ item.policy }}"
+    state: enabled
+  with_items: "{{ policies }}"

@@ -4,3 +4,7 @@ firewall_rules:
   - { rule: 'allow', port: 22, proto: 'tcp' }
   - { rule: 'allow', port: 80, proto: 'tcp' }
   - { rule: 'allow', port: 443, proto: 'tcp' }
+
+policies:
+  - { direction: outgoing, policy: allow }
+  - { direction: incoming, policy: deny }
