@@ -1,3 +1,4 @@
+---
 name: CI of ansible-galaxy role
 
 on:
@@ -18,4 +19,8 @@ jobs:
         run: echo "REPO_NAME=${GITHUB_REPOSITORY##*/}" >> $GITHUB_ENV
 
       - name: Push role to ansible-galaxy
-        run: ansible-galaxy role import --token ${{secrets.GALAXY_TOKEN}} ${{github.REPOSITORY_OWNER}} ${{env.REPO_NAME}}
+        run: >
+          ansible-galaxy role import
+          --token ${{secrets.GALAXY_TOKEN}}
+          ${{github.REPOSITORY_OWNER}}
+          ${{env.REPO_NAME}}
