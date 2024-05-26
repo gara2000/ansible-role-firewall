@@ -1,4 +1,15 @@
 ---
+- name: Ensure required packages are installed
+  apt:
+    name: 
+      - iputils-ping
+      - curl 
+      - ufw
+      - net-tools
+      - tcpdump
+    state: present
+    update_cache: true
+
 - name: Configure open ports with ufw
   ufw:
     rule: "{{ item.rule }}"
