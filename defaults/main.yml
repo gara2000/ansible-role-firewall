@@ -1,9 +1,10 @@
 ---
 # defaults file for dnsclient
-firewall_rules:
-  - { rule: 'allow', port: 22, proto: 'tcp' }
-  - { rule: 'allow', port: 80, proto: 'tcp' }
-  - { rule: 'allow', port: 443, proto: 'tcp' }
+# firewall_rules:
+#   - { rule: 'allow', port: 22, proto: 'tcp' }
+#   - { rule: 'allow', port: 80, proto: 'tcp' }
+#   - { rule: 'allow', port: 443, proto: 'tcp' }
+open_ports: [22, 80, 443]
 
 policies:
   - { direction: outgoing, policy: allow }

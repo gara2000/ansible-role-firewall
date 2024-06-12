@@ -10,12 +10,19 @@
     state: present
     update_cache: true
 
-- name: Configure open ports with ufw
+# - name: Configure open ports with ufw (using the specified rules)
+#   ufw:
+#     rule: "{{ item.rule }}"
+#     port: "{{ item.port }}"
+#     proto: "{{ item.proto }}"
+#   with_items: "{{ firewall_rules }}"
+
+- name: Configure open ports with ufw (using the specified open ports)
   ufw:
-    rule: "{{ item.rule }}"
-    port: "{{ item.port }}"
-    proto: "{{ item.proto }}"
-  with_items: "{{ firewall_rules }}"
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+  with_items: "{{ open_ports }}"
 
 - name: Configure default incoming/outgoing rules with ufw
   ufw:
